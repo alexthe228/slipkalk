@@ -1,0 +1,8 @@
+
+<bitmap
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/b01"
+    android:tileMode="repeat"
+    android:alpha="0.01"
+    />
+

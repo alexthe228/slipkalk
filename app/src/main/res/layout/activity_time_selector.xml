@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:background="@drawable/gradient"
+    >
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/background2" />
+
+    <RelativeLayout
+        android:id="@+id/timePicker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="80dp"
+            android:gravity="center_horizontal"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/text"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TimePicker
+                android:id="@+id/timeToWakeUp"
+                android:layout_width="wrap_content"
+                android:layout_height="170dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:headerBackground="#000000"
+                android:numbersSelectorColor="#000000"
+                android:timePickerMode="spinner" />
+
+            <ImageButton
+                android:id="@+id/alarmButton"
+                android:layout_width="76dp"
+                android:layout_height="67dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/alarm" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/layout1"
+            android:layout_margin="15dp"
+            android:gravity="top|center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/asleepTimeText2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/calculateButton"
+                android:layout_toStartOf="@+id/seekBar"
+                android:layout_weight="1"
+                android:text="Asleep time" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/calculateButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:max="40" />
+
+
+            <TextView
+                android:id="@+id/asleepTimeValue2"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/seekBar"
+                android:layout_toEndOf="@+id/seekBar"
+                android:text="10" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/layout2"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:gravity="top|center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ageText"
+                android:layout_width="166dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/calculateButton"
+                android:layout_toStartOf="@+id/seekBar"
+                android:layout_weight="1"
+                android:text="Age" />
+
+            <SeekBar
+                android:id="@+id/seekBar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/calculateButton"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:max="80" />
+
+
+            <TextView
+                android:id="@+id/ageValue"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/seekBar"
+                android:layout_toEndOf="@+id/seekBar"
+                android:text="17-25" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout3"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:id="@+id/calculateButton"
+                android:layout_width="258dp"
+                android:layout_height="69dp"
+                android:layout_above="@+id/adView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_btn"
+                android:text="Calculate"
+                android:textSize="19dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/asleepTime"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/asleepTime"
+        android:layout_alignTop="@+id/asleepTime"
+        android:layout_marginTop="-10dp"
+        android:textSize="20dp" />
+
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+    </com.google.android.gms.ads.AdView>
+
+
+</RelativeLayout>
