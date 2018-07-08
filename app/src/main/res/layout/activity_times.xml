@@ -1,31 +1,39 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:background="@drawable/gradient">
+    android:orientation="vertical"
+    android:background="@drawable/background2">
+
+
+    <ScrollView
+        android:id="@+id/sw"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/gradient"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/background2">
 
-            android:background="@drawable/background2"
-            >
-
-
-        <LinearLayout
-            android:id="@+id/linear5"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/linear4"
-            android:layout_gravity="bottom|center_horizontal"
-            android:gravity="center_horizontal|center_vertical"
-            android:layout_marginBottom="60dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/rounded_corner"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/linear5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/linear4"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="60dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_corner"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/time5"
@@ -34,7 +42,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="70dp"
                     android:text="5 cycles go to sleep at : 1:00 AM"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
                 <ImageButton
                     android:id="@+id/notification5"
@@ -47,20 +55,20 @@
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/notification" />
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linear4"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/linear3"
-            android:layout_gravity="bottom|center_horizontal"
-            android:gravity="center_horizontal|center_vertical"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/rounded_corner"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/linear4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/linear3"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_corner"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/time4"
@@ -82,20 +90,20 @@
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/notification" />
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linear3"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/linear2"
-            android:layout_gravity="bottom|center_horizontal"
-            android:gravity="center_horizontal|center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/rounded_corner">
+            <LinearLayout
+                android:id="@+id/linear3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/linear2"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_corner"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/time3"
@@ -117,32 +125,32 @@
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/notification" />
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/timeDesc2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linear1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:text="Alternative:"
-            android:textSize="26dp" />
+            <TextView
+                android:id="@+id/timeDesc2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linear1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Alternative:"
+                android:textSize="26dp" />
 
-        <LinearLayout
-            android:id="@+id/linear2"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/timeDesc2"
-            android:layout_gravity="bottom|center_horizontal"
-            android:gravity="center_horizontal|center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/rounded_corner">
+            <LinearLayout
+                android:id="@+id/linear2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/timeDesc2"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_corner"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/time2"
@@ -165,32 +173,32 @@
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/notification" />
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/timeDesc1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:text="Best time to go to sleep:"
-            android:textSize="26dp" />
+            <TextView
+                android:id="@+id/timeDesc1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Best time:"
+                android:textSize="26dp" />
 
-        <LinearLayout
-            android:id="@+id/linear1"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/timeDesc1"
-            android:layout_gravity="bottom|center_horizontal"
-            android:gravity="center_horizontal|center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/rounded_corner">
+            <LinearLayout
+                android:id="@+id/linear1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/timeDesc1"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_corner"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/time1"
@@ -214,22 +222,29 @@
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/notification" />
 
-        </LinearLayout>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="13dp"
+                android:alpha="0.5"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/back" />
+
+        </RelativeLayout>
+    </ScrollView>
 
 
-
-                <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
-        </com.google.android.gms.ads.AdView>
-
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
 
 </RelativeLayout>
-
-</ScrollView>
