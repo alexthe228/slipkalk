@@ -182,24 +182,6 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/asleepTime"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/asleepTime"
-        android:layout_alignTop="@+id/asleepTime"
-        android:layout_marginTop="-10dp"
-        android:textSize="20dp" />
-
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"

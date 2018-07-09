@@ -22,7 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Times"></activity>
+        <activity android:name=".Times" android:screenOrientation="portrait"></activity>
+
+        <receiver android:name=".MyReceiver"/>
     </application>
 
 </manifest>
