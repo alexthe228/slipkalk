@@ -33,6 +33,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center_horizontal"
+            android:text="Wake up at:"
             android:textSize="24dp"
             android:textStyle="bold" />
 
