@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/gradient"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/main" >
 
 
     <ScrollView
@@ -12,13 +13,12 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/background2"
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/rw"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background2">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/asleepTime2"
@@ -59,7 +59,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="70dp"
-                    android:text="5 cycles go to sleep at : 1:00 AM"
+                    android:textColor="#8b5a2f"
+                    android:text="@string/result"
                     android:textSize="20dp" />
 
                 <ImageButton
@@ -94,7 +95,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="70dp"
-                    android:text="5 cycles go to sleep at : 12:00 AM"
+                    android:textColor="#8b722f"
+                    android:text="@string/result"
                     android:textSize="20dp" />
 
                 <ImageButton
@@ -129,7 +131,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="70dp"
-                    android:text="5 cycles go to sleep at : 12:00 AM"
+                    android:textColor="#878b2f"
+                    android:text="@string/result"
                     android:textSize="20dp" />
 
                 <ImageButton
@@ -154,7 +157,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
-                android:text="Alternative:"
+                android:text="@string/alternative"
                 android:textSize="26dp" />
 
             <LinearLayout
@@ -174,9 +177,10 @@
                     android:id="@+id/time2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#718b2f"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="70dp"
-                    android:text="5 cycles go to sleep at : 12:00 AM"
+                    android:text="@string/result"
                     android:textSize="20dp" />
 
 
@@ -202,7 +206,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
-                android:text="Best time:"
+                android:text="@string/best"
                 android:textSize="26dp" />
 
             <LinearLayout
@@ -225,7 +229,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="70dp"
                     android:gravity="center_vertical"
-                    android:text="5 cycles go to sleep at : 12:00 AM"
+                    android:text="@string/result"
                     android:textColor="#558B2F"
                     android:textSize="20dp" />
 

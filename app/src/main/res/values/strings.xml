@@ -1,3 +1,27 @@
 <resources>
-    <string name="app_name">SleepTime</string>
+    <string name="app_name">BedTime - Sleep Cycle Calculator</string>
+    <string name="wake_up">Wake up at:</string>
+    <string name="asleep">Asleep time:</string>
+    <string name="age">Age:</string>
+    <string name="best">Best time:</string>
+    <string name="alternative">Alternative:</string>
+    <string name="CALCULATE">CALCULATE</string>
+    <string name="result">" cycles to sleep. Please go to bed at "</string>
+    <string name="about">About</string>
+    <string name="setnotification">Set notification time</string>
+    <string name="aboutText">This application can help you to feel rested after your daily sleep. Just choose the time when you want to wake up and touch Calclulate.
+        Applicaiton will calculate the best bed time options, depending on your age and time you spent in bed before sleep. </string>
+    <string name="notificationToast">"You will get notification at: "</string>
+    <string name="notificationTip">Notification time = </string>
+    <string name="notificationTitle">This application can notify you before your bed time in advance. Please set time in minutes.</string>
+    <string name="close">Cancel</string>
+    <string name="ok">Apply</string>
+    <string name="ageText">Amount of needed sleeping cycles depends on age. Please set your age.</string>
+    <string name="asleepText">Time that you usually spent in the bed before falling asleep. Average time is about 15 minutes.</string>
+    <string name="notificationTitleReceiver">Sleep time is close</string>
+    <string name="notificationTextReceiver">Thats time to start getting to bed</string>
+    <string name="setAlarm">Set alarm at </string>
+    <string name="sure">Are you sure?</string>
+    <string name="yes">Yes</string>
+
 </resources>

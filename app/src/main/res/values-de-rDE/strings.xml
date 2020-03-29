@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Schlafrechner</string>
+    <string name="wake_up">Aufwachen um:</string>
+    <string name="asleep">"Einschlafenzeit: "</string>
+    <string name="age">"Alter: "</string>
+    <string name="best">"Beste Zeit: "</string>
+    <string name="alternative">"Alternative: "</string>
+    <string name="CALCULATE">BERECHNEN</string>
+    <string name="result">" Zycklen. Ins Bett gehen um: "</string>
+    <string name="about">Über</string>
+    <string name="setnotification">Benachrichtungen</string>
+    <string name="notificationTitle">Die App wird Sie daran erinnern, pünktich schlafen zu gehen. Geben Sie bitte Zeit in Minuten.</string>
+    <string name="aboutText">Diese App kann Ihnen helfen, sich nach dem Schlafen entspannt zu fühlen. Wählen Sie einfach die Zeit, wann Sie aufwachen möchten  und berühren Sie \"berechnen\". Die App berechnet die beste Zeitoptionen für das Schlafen, abhängig von Ihrem Alter und der Zeit  des Einschafens.</string>
+    <string name="notificationToast">"Benachrichtung kommt um: "</string>
+    <string name="notificationTip">"Benachrichtung = "</string>
+    <string name="close">Zurück</string>
+    <string name="ageText">"Wie lange brauchen Sie um einzuschlafen. "</string>
+    <string name="asleepText">Die Schlafzycklen werden abhängig von Ihrem Alter berechnet. Geben Sie bitte Ihr Alter an.</string>
+    <string name="yes">Ja</string>
+    <string name="sure">Sicher?</string>
+    <string name="setAlarm">"Wecker stellen um "</string>
+    <string name="notificationTitleReceiver">Zeit zum Schlafen</string>
+    <string name="notificationTextReceiver">Es ist Zeit schlafen zu gehen</string>
+    <string name="ok">Anwenden</string>
+</resources>

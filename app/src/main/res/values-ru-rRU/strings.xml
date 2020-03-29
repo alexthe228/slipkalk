@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Калькулятор циклов сна</string>
+    <string name="wake_up">Проснуться в:</string>
+    <string name="asleep">Время засыпания:</string>
+    <string name="age">Возраст:</string>
+    <string name="best">Лучшее время:</string>
+    <string name="alternative">Другое время:</string>
+    <string name="CALCULATE">РАССЧИТАТЬ</string>
+    <string name="result">"  циклов. Ложитесь спать в "</string>
+    <string name="setnotification">Время нотификаций</string>
+    <string name="about">Об апликации</string>
+    <string name="aboutText">Это приложение может помочь вам почувствовать себя отдохнувшим после ежедневного сна. Просто выберите время, когда вы хотите проснуться и коснитесь Рассчитать.         Приложение рассчитает лучшие варианты времени для сна, в зависимости от вашего возраста и времени, которое вы пробводите в постели перед сном.</string>
+    <string name="notificationToast">"Вы получите нотификацию в: "</string>
+    <string name="notificationTip">"Время нотификаций = "</string>
+    <string name="notificationTitle">Приложение может напомнить вам когда нужно идти спать. Пожалуйстa введите время в минутах перед сном.</string>
+    <string name="close">Закрыть</string>
+    <string name="ok">Использовать</string>
+    <string name="ageText">Количество нужных циклов для сна зависит от возраста. Пожалуйстa введите ваш возраст.</string>
+    <string name="asleepText">Время которое вы обычно проводите в кровате пока не заснете. Среднее время для человека - 15 минут.</string>
+    <string name="notificationTitleReceiver">Скоро время спать</string>
+    <string name="notificationTextReceiver">Пора двигаться в сторону кровати</string>
+    <string name="setAlarm">"Активировать будильник в "</string>
+    <string name="sure">Вы уверены?</string>
+    <string name="yes">Да</string>
+</resources>

@@ -3,21 +3,24 @@ package kudrin.sleeptime;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.AlarmClock;
+import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDelegate;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -27,14 +30,26 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
-import java.sql.Time;
-
 
 public class TimeSelector extends AppCompatActivity {
 
-    int asleepTime = 10;
+    int asleepTime = 0;
     int notificationTime = 10;
     int age = 25;
+
+    public String MD5(String md5) {
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+            byte[] array = md.digest(md5.getBytes());
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < array.length; ++i) {
+                sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+            }
+            return sb.toString();
+        } catch (java.security.NoSuchAlgorithmException e) {
+        }
+        return null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +57,18 @@ public class TimeSelector extends AppCompatActivity {
 
         setContentView(R.layout.activity_time_selector);
 
-        MobileAds.initialize(this, "ca-app-pub-2111982870654604/7496386884");
+
+        int sdk = android.os.Build.VERSION.SDK_INT;
+        if (sdk < Build.VERSION_CODES.LOLLIPOP) {
+            //findViewById(R.id.imageView2).setBackground(null);
+          //  ImageView image = (ImageView) this.findViewById(R.id.imageView2);
+         //   image.setImageBitmap(null);
+        }
+
+        MobileAds.initialize(this, "ca-app-pub-2111982870654604~6626567462");
+
+        String androidId =  Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+        String deviceId = MD5(androidId).toUpperCase();
 
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -53,23 +79,86 @@ public class TimeSelector extends AppCompatActivity {
         TimePicker timePicker = (TimePicker) findViewById(R.id.timeToWakeUp);
         timePicker.setIs24HourView(true);
 
-        TextView text = (TextView) findViewById(R.id.text);
-        text.setText("Set the time when you want to wake up");
-
-
-        int asleepTime = settings.getInt("asleepTime", 10);
-        int notificationTime = settings.getInt("notificationTime", 10);
-        int age = settings.getInt("age", 25);
+        asleepTime = settings.getInt("asleepTime", 15);
+        notificationTime = settings.getInt("notificationTime", 10);
+        age = settings.getInt("age", 25);
         int lastTimeHours = settings.getInt("hours", 8);
         int lastTimeMinutes = settings.getInt("minutes", 0);
 
         timePicker.setCurrentMinute(lastTimeMinutes);
         timePicker.setCurrentHour(lastTimeHours);
 
+        final AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+
+        builder2.setTitle(getString(R.string.age));
+        builder2.setIcon(R.drawable.tip);
+        builder2.setMessage(getString(R.string.ageText));
+        builder2.setNegativeButton(getString(R.string.close), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        final AlertDialog ageTipText = builder2.create();
+
+        ImageButton ageTip = (ImageButton) this.findViewById(R.id.ageTip);
+
+        ageTip.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+                                          ageTipText.show();
+                                          }
+                                  });
+
+
+        final AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
+
+        builder3.setTitle(getString(R.string.asleep));
+        builder3.setMessage(getString(R.string.asleepText));
+        builder3.setIcon(R.drawable.tip);
+        builder3.setNegativeButton(getString(R.string.close), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        final AlertDialog asleepTipText = builder3.create();
+
+        ImageButton asleepTip = (ImageButton) this.findViewById(R.id.asleepTip);
+
+        asleepTip.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            asleepTipText.show();
+                                        }
+                                     });
+
         SeekBar seekbar = (SeekBar)findViewById(R.id.seekBar);
         seekbar.setProgress(asleepTime);
         TextView asleepTimeValue = (TextView)findViewById(R.id.asleepTimeValue2);
-        asleepTimeValue.setText(String.valueOf(asleepTime));
+
+        if (asleepTime==0)
+            asleepTimeValue.setText("0");
+        else if (asleepTime<6)
+            asleepTimeValue.setText("5");
+        else if (asleepTime<11)
+            asleepTimeValue.setText("10");
+        else if (asleepTime<16)
+            asleepTimeValue.setText("15");
+        else if (asleepTime<21)
+            asleepTimeValue.setText("20");
+        else if (asleepTime<26)
+            asleepTimeValue.setText("25");
+        else if (asleepTime<31)
+            asleepTimeValue.setText("30");
+        else if (asleepTime<36)
+            asleepTimeValue.setText("35");
+        else
+            asleepTimeValue.setText("40");
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             TextView asleepTimeValue = (TextView)findViewById(R.id.asleepTimeValue2);
@@ -77,13 +166,47 @@ public class TimeSelector extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 
-                asleepTimeValue.setText(String.valueOf(i));
+                if (i==0) {
+                    asleepTimeValue.setText("0");
+                    asleepTime = i;
+                }
+                else if (i<6){
+                    asleepTimeValue.setText("5");
+                    asleepTime = i;
+                }
+                else if (i<11){
+                    asleepTimeValue.setText("10");
+                    asleepTime = i;
+                }
+                else if (i<16){
+                    asleepTimeValue.setText("15");
+                    asleepTime = i;
+                }
+                else if (i<21){
+                    asleepTimeValue.setText("20");
+                    asleepTime = i;
+                }
+                else if (i<26){
+                    asleepTimeValue.setText("25");
+                    asleepTime = i;
+                }
+                else if (i<31){
+                    asleepTimeValue.setText("30");
+                    asleepTime = i;
+                }
+                 else if (i<36){
+                    asleepTimeValue.setText("35");
+                    asleepTime = i;
+                }
+                else{
+                    asleepTimeValue.setText("40");
+                    asleepTime = i;
+                }
 
                 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putInt("asleepTime", i);
                 editor.commit();
-
             }
 
             @Override
@@ -95,46 +218,18 @@ public class TimeSelector extends AppCompatActivity {
 
             }
         });
-
-
         SeekBar seekbar2 = (SeekBar)findViewById(R.id.seekBar2);
         seekbar2.setProgress(age);
         TextView ageValue = (TextView)findViewById(R.id.ageValue);
-
-        if (age<4)
-            ageValue.setText("0-3");
-        else if (age<10)
-            ageValue.setText("3-9");
-        else if (age<18)
-            ageValue.setText("9-17");
-        else if (age<26)
-            ageValue.setText("17-25");
-        else if (age<39)
-            ageValue.setText("25-38");
-        else if (age<55)
-            ageValue.setText("38-54");
-        else
-            ageValue.setText(">54");
+        ageValue.setText(String.valueOf(age));
 
         seekbar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             TextView ageValue = (TextView)findViewById(R.id.ageValue);
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                if (i<4)
-                    ageValue.setText("0-3");
-                else if (i<10)
-                    ageValue.setText("3-9");
-                else if (i<18)
-                    ageValue.setText("9-17");
-                else if (i<26)
-                    ageValue.setText("17-25");
-                else if (i<39)
-                    ageValue.setText("25-38");
-                else if (i<55)
-                    ageValue.setText("38-54");
-                else
-                    ageValue.setText(">54");
+                ageValue.setText(String.valueOf(age));
+                age = i;
 
                 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = settings.edit();
@@ -153,43 +248,13 @@ public class TimeSelector extends AppCompatActivity {
             }
         });
 
-
-        TextView tip = (TextView) findViewById(R.id.asleepTime);
-        TextView tip2 = (TextView) findViewById(R.id.textView2);
-        AlphaAnimation fadeOut = new AlphaAnimation( 1.0f , 0.0f ) ;
-        fadeOut.setDuration(7000);
-        fadeOut.setFillAfter(true);
-
-        if ((notificationTime==10)) {
-            tip.setText("Notification time is set to 10 which is default, you can change it in the settings");
-            tip2.setText("▲");
-        }
-
-        fadeOut.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                TextView tip = (TextView) findViewById(R.id.asleepTime);
-                tip.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-        });
-
-        tip.startAnimation(fadeOut);
-        tip2.startAnimation(fadeOut);
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Set alarm at this time?");
-        builder.setMessage("Are you sure?");
+        String time = convertTime(timePicker.getCurrentHour(), timePicker.getCurrentMinute());
+        builder.setTitle(getString(R.string.setAlarm) + " " + time);
+        builder.setMessage(R.string.sure);
 
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
 
@@ -208,7 +273,7 @@ public class TimeSelector extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getString(R.string.close), new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -217,7 +282,6 @@ public class TimeSelector extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
 
         ImageButton alarmButton = (ImageButton) findViewById(R.id.alarmButton);
         alarmButton.setOnClickListener(new View.OnClickListener() {
@@ -247,6 +311,7 @@ public class TimeSelector extends AppCompatActivity {
     public void openTimes(int hour, int minutes){
         Intent intent = new Intent (this, Times.class);
         intent.putExtra("HOUR", hour);
+        intent.putExtra("AGE", age);
         intent.putExtra("MINUTES", minutes);
         intent.putExtra("ASLEEPTIME", asleepTime);
         intent.putExtra("NOTIFICATIONTIME", notificationTime);
@@ -271,125 +336,14 @@ public class TimeSelector extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
         {
-            /*
-            case R.id.setAsleep:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Asleep time.");
-                builder.setMessage("Please set amount of minutes that you usually spent in hte bed before falling asleep.");
 
-                final EditText input = new EditText(this);
-                input.setInputType(InputType.TYPE_CLASS_NUMBER);
-                builder.setView(input);
-
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        asleepTime = Integer.parseInt(input.getText().toString());
-                        TextView parametersView = (TextView) findViewById(R.id.asleepTime);
-                        parametersView.setText("Asleep time: "+asleepTime);
-
-                        AlphaAnimation fadeOut = new AlphaAnimation( 1.0f , 0.0f ) ;
-                        fadeOut.setDuration(10000);
-                        fadeOut.setFillAfter(true);
-
-                        fadeOut.setAnimationListener(new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationStart(Animation animation) {
-                            }
-
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                TextView tip = (TextView) findViewById(R.id.asleepTime);
-                                tip.setVisibility(View.INVISIBLE);
-                            }
-
-                            @Override
-                            public void onAnimationRepeat(Animation animation) {
-                            }
-                        });
-                        parametersView.startAnimation(fadeOut);
-
-                        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        SharedPreferences.Editor editor = settings.edit();
-                        editor.putInt("asleepTime", asleepTime);
-                        editor.commit();
-
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-
-                builder.show();
-                return true;
-
-            case R.id.age:
-                AlertDialog.Builder builder4 = new AlertDialog.Builder(this);
-                builder4.setTitle("Age.");
-                builder4.setMessage("Amount of sleeping cycles needed for good rest sleep depends on age. Please set your age.");
-
-                final EditText input4 = new EditText(this);
-                input4.setInputType(InputType.TYPE_CLASS_NUMBER);
-                builder4.setView(input4);
-
-                builder4.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        age = Integer.parseInt(input4.getText().toString());
-                        TextView parametersView = (TextView) findViewById(R.id.asleepTime);
-                        parametersView.setText("Age: "+ age);
-
-                        AlphaAnimation fadeOut = new AlphaAnimation( 1.0f , 0.0f ) ;
-                        fadeOut.setDuration(10000);
-                        fadeOut.setFillAfter(true);
-
-                        fadeOut.setAnimationListener(new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationStart(Animation animation) {
-                            }
-
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                TextView tip = (TextView) findViewById(R.id.asleepTime);
-                                tip.setVisibility(View.INVISIBLE);
-                            }
-
-                            @Override
-                            public void onAnimationRepeat(Animation animation) {
-                            }
-                        });
-                        parametersView.startAnimation(fadeOut);
-
-
-                        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        SharedPreferences.Editor editor = settings.edit();
-                        editor.putInt("age", age);
-                        editor.commit();
-
-                    }
-                });
-                builder4.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-
-                builder4.show();
-                return true;
-        */
 
             case R.id.about:
                 final AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
-                builder2.setTitle("About");
-                builder2.setMessage("This application can help you to feel rested after your daily sleep. Just choose the time when you want to wake up and touch 'Calclulate'. Applicaiton will " +
-                        " calculate the best options for you to go to bed, depending on your age and time you spent in bed before sleep. ");
-                builder2.setNegativeButton("Okay", new DialogInterface.OnClickListener() {
+                builder2.setTitle(getString(R.string.about));
+                builder2.setIcon(R.mipmap.ic_launcher);
+                builder2.setMessage(getString(R.string.aboutText));
+                builder2.setNegativeButton("Close", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Do nothing
@@ -402,42 +356,21 @@ public class TimeSelector extends AppCompatActivity {
 
             case R.id.notificationTime:
                 AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
-                builder3.setTitle("Notification time");
-                builder3.setMessage("This application can notify you before your bed time in advance. Please set time in minutes.");
+                builder3.setTitle(getString(R.string.setnotification));
+                builder3.setMessage(getString(R.string.notificationTitle));
+                builder3.setIcon(R.drawable.sleep);
 
                 final EditText input2 = new EditText(this);
                 input2.setInputType(InputType.TYPE_CLASS_NUMBER);
                 builder3.setView(input2);
 
-                builder3.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder3.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         notificationTime = Integer.parseInt(input2.getText().toString());
 
-                        TextView parametersView = (TextView) findViewById(R.id.asleepTime);
-                        parametersView.setText("Notification time: " + notificationTime);
-
-                        AlphaAnimation fadeOut = new AlphaAnimation( 1.0f , 0.0f ) ;
-                        fadeOut.setDuration(10000);
-                        fadeOut.setFillAfter(true);
-
-                        fadeOut.setAnimationListener(new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationStart(Animation animation) {
-                            }
-
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                TextView tip = (TextView) findViewById(R.id.asleepTime);
-                                tip.setVisibility(View.INVISIBLE);
-                            }
-
-                            @Override
-                            public void onAnimationRepeat(Animation animation) {
-                            }
-                        });
-                        parametersView.startAnimation(fadeOut);
-
+                        Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.notificationTip) + notificationTime, Toast.LENGTH_LONG);
+                        toast.show();
 
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         SharedPreferences.Editor editor = settings.edit();
@@ -446,7 +379,7 @@ public class TimeSelector extends AppCompatActivity {
 
                     }
                 });
-                builder3.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder3.setNegativeButton(getString(R.string.close), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -459,5 +392,21 @@ public class TimeSelector extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public static String convertTime (int hour, int minute) {
+        String time = "";
+        String sHour = String.valueOf(hour);
+        String sMinute = String.valueOf(minute);;
+
+        if (hour<10)
+            sHour = "0" + sHour;
+
+        if (minute<10)
+            sMinute = "0" + sMinute;
+
+        time = sHour + ":" + sMinute;
+
+        return time;
     }
 }
