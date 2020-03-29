@@ -1,5 +1,6 @@
 package kudrin.sleeptime;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,9 +13,12 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -220,15 +224,43 @@ public class TimeSelector extends AppCompatActivity {
         });
         SeekBar seekbar2 = (SeekBar)findViewById(R.id.seekBar2);
         seekbar2.setProgress(age);
+
         TextView ageValue = (TextView)findViewById(R.id.ageValue);
-        ageValue.setText(String.valueOf(age));
+        int ageValueInt = Integer.parseInt(String.valueOf(age));
+
+        if (ageValueInt<5)
+            ageValue.setText(" 0-5");
+        if (ageValueInt>5&&ageValueInt<15)
+            ageValue.setText(" 5-15");
+        if (ageValueInt>15&&ageValueInt<30)
+            ageValue.setText("15-30");
+        if (ageValueInt>30&&ageValueInt<50)
+            ageValue.setText("30-50");
+        if (ageValueInt>50&&ageValueInt<70)
+            ageValue.setText("50-70");
+        if (ageValueInt>70)
+            ageValue.setText("70+  ");
 
         seekbar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             TextView ageValue = (TextView)findViewById(R.id.ageValue);
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                ageValue.setText(String.valueOf(age));
+                int ageValueInt = Integer.parseInt(String.valueOf(age));
+
+                if (ageValueInt<5)
+                    ageValue.setText(" 0-5");
+                if (ageValueInt>5&&ageValueInt<15)
+                    ageValue.setText(" 5-15");
+                if (ageValueInt>15&&ageValueInt<30)
+                    ageValue.setText("15-30");
+                if (ageValueInt>30&&ageValueInt<50)
+                    ageValue.setText("30-50");
+                if (ageValueInt>50&&ageValueInt<70)
+                    ageValue.setText("50-70");
+                if (ageValueInt>70)
+                    ageValue.setText("70+  ");
+
                 age = i;
 
                 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

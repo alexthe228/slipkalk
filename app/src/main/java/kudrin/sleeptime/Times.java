@@ -55,10 +55,10 @@ public class Times extends AppCompatActivity {
         }
 
 
-        MobileAds.initialize(this, "ca-app-pub-2111982870654604~6626567462");
+       // MobileAds.initialize(this, "ca-app-pub-2111982870654604~6626567462");
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-       mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);
 
         hour = getIntent().getIntExtra("HOUR", hour);
         minutes = getIntent().getIntExtra("MINUTES", minutes);
@@ -71,11 +71,6 @@ public class Times extends AppCompatActivity {
         AlphaAnimation fadeOut = new AlphaAnimation( 1.0f , 0.0f ) ;
         fadeOut.setDuration(7000);
         fadeOut.setFillAfter(true);
-
-        if ((notificationTime==10)) {
-            tip.setText("Notification time is set to 10 which is default, you can change it in the settings");
-            tip2.setText("▲");
-        }
 
         fadeOut.setAnimationListener(new Animation.AnimationListener() {
             @Override

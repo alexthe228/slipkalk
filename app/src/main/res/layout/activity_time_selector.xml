@@ -58,7 +58,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="@null"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/alarm" />
+                app:srcCompat="@drawable/alarma" />
 
         </LinearLayout>
 
@@ -97,13 +97,16 @@
                 android:scrollbars="horizontal"
                 android:thumb="@drawable/thumb" />
 
-            <EditText
+            <TextView
                 android:id="@+id/asleepTimeValue2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/seekBar"
+                android:layout_marginRight="10dp"
                 android:layout_toEndOf="@+id/seekBar"
-                android:text="10" />
+
+                android:text="10"
+                android:textSize="24dp" />
 
         </LinearLayout>
 
@@ -144,13 +147,15 @@
                 android:max="80"
                 android:thumb="@drawable/thumb" />
 
-            <EditText
+            <TextView
                 android:id="@+id/ageValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/seekBar"
+                android:layout_marginRight="10dp"
                 android:layout_toEndOf="@+id/seekBar"
-                android:text="25" />
+                android:text="15-30"
+                android:textSize="24dp" />
 
         </LinearLayout>
 
@@ -179,12 +184,12 @@
 
         <ImageButton
             android:id="@+id/asleepTip"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignEnd="@+id/text"
             android:layout_alignTop="@+id/layout2"
-            android:layout_marginEnd="3dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginEnd="-1dp"
+            android:layout_marginTop="-1dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
@@ -192,8 +197,8 @@
 
         <ImageButton
             android:id="@+id/ageTip"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignBottom="@+id/layout3"
             android:layout_alignEnd="@+id/text"
             android:layout_weight="1"
